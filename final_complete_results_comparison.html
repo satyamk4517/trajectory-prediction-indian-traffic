@@ -1,0 +1,245 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap { padding: 1.5rem 0; font-family: var(--font-sans); }
+h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+.section-head { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-secondary); margin: 1.8rem 0 0.6rem; padding-bottom: 4px; border-bottom: 1px solid var(--color-border-tertiary); }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--color-border-secondary); white-space: nowrap; }
+td { padding: 5px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+.badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+.b-ngsim  { background: #E6F1FB; color: #0C447C; }
+.b-war    { background: #FAEEDA; color: #633806; }
+.b-sp     { background: #E1F5EE; color: #085041; }
+@media (prefers-color-scheme: dark) {
+  .b-ngsim { background: #0C447C; color: #B5D4F4; }
+  .b-war   { background: #633806; color: #FAC775; }
+  .b-sp    { background: #085041; color: #9FE1CB; }
+}
+.c-bike { color: #533AB7; font-weight: 500; }
+.c-auto { color: #0F6E56; font-weight: 500; }
+.c-car  { color: #185FA5; font-weight: 500; }
+.c-bus  { color: #993C1D; font-weight: 500; }
+.c-all  { color: var(--color-text-secondary); }
+.best { font-weight: 500; color: #0F6E56; }
+@media (prefers-color-scheme: dark) { .best { color: #5DCAA5; } }
+.star { color: #EF9F27; }
+.na { color: var(--color-text-tertiary); font-style: italic; font-size: 11px; }
+.group-row td { background: var(--color-background-secondary); font-size: 11px; font-weight: 500; color: var(--color-text-secondary); padding: 4px 8px; }
+.note { font-size: 11.5px; color: var(--color-text-secondary); margin-top: 1.2rem; padding-top: 0.8rem; border-top: 0.5px solid var(--color-border-tertiary); line-height: 1.7; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.2rem; }
+.leg { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--color-text-secondary); }
+.leg-dot { width: 9px; height: 9px; border-radius: 2px; }
+.unit { font-size: 10px; color: var(--color-text-tertiary); }
+</style>
+
+<div class="wrap">
+<h2>Complete trajectory prediction results — all phases & datasets</h2>
+<p class="sub">NGSIM homogeneous freeway (Phase 1) · Warangal heterogeneous urban baseline · SP-GAT iterative development (Phase 2)</p>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#185FA5"></div> NGSIM dataset</div>
+  <div class="leg"><div class="leg-dot" style="background:#EF9F27"></div> Warangal dataset — early/baseline models</div>
+  <div class="leg"><div class="leg-dot" style="background:#0F6E56"></div> Warangal dataset — SP-GAT phases</div>
+  <div class="leg"><div class="leg-dot" style="color:#EF9F27">★</div> Best result in its class</div>
+</div>
+
+<!-- SECTION 1: NGSIM -->
+<div class="section-head">Phase 1 — NGSIM homogeneous freeway (I-101, Cars only, feet→meters converted)</div>
+<table>
+  <thead>
+    <tr><th>Model</th><th>Architecture</th><th>Dataset</th><th>Traffic type</th><th>Class</th><th>ADE (m)</th><th>FDE (m)</th><th>RMSE (m)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="group-row"><td colspan="8">Kinematic & physics-only models</td></tr>
+    <tr>
+      <td><span class="badge b-ngsim">3A — Kinematic LSTM</span></td>
+      <td>BiLSTM encoder + kinematic decoder</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td>0.652</td><td>1.704</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-ngsim">3B — Leader-Follower (ungated)</span></td>
+      <td>BiLSTM + leader history input</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td>0.612</td><td>1.572</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-ngsim">3B — Leader-Follower (gated)</span></td>
+      <td>BiLSTM + leader + sigmoid gate</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td>0.613</td><td>1.569</td><td class="na">—</td>
+    </tr>
+    <tr class="group-row"><td colspan="8">Social attention model</td></tr>
+    <tr>
+      <td><span class="badge b-ngsim">4 — Social GAT</span></td>
+      <td>BiLSTM + Graph Attention Network</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td class="best">0.526 <span class="star">★</span></td><td class="best">1.306</td><td class="na">—</td>
+    </tr>
+    <tr class="group-row"><td colspan="8">Cross-validation: same models on NGSIM (second benchmark run)</td></tr>
+    <tr>
+      <td><span class="badge b-ngsim">3A — Physics</span></td><td>Kinematic LSTM</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td>0.550</td><td>1.365</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-ngsim">3B — Ungated</span></td><td>Leader-Follower</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td>0.623</td><td>1.586</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-ngsim">3B — Gated</span></td><td>Gated Leader-Follower</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td>0.552</td><td>1.405</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-ngsim">4 — Social GAT</span></td><td>Graph Attention Network</td>
+      <td>NGSIM</td><td>Homogeneous freeway</td>
+      <td><span class="c-all">Car</span></td>
+      <td class="best">0.454 <span class="star">★</span></td><td class="best">1.102</td><td class="na">—</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 2: WARANGAL EARLY -->
+<div class="section-head">Phase 1 models transferred → Warangal heterogeneous urban dataset</div>
+<table>
+  <thead>
+    <tr><th>Model</th><th>Architecture</th><th>Dataset</th><th>Traffic type</th><th>Class</th><th>ADE (m)</th><th>FDE (m)</th><th>RMSE (m)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="group-row"><td colspan="8">Physics-only baseline on Warangal (all classes pooled, no social)</td></tr>
+    <tr>
+      <td><span class="badge b-war">Kinematic baseline</span></td><td>Physics-only LSTM</td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-bus">Bus</span></td><td>8.95</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-war">Kinematic baseline</span></td><td></td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-car">Car</span></td><td>9.09</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-war">Kinematic baseline</span></td><td></td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-auto">Auto</span></td><td>10.10</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-war">Kinematic baseline</span></td><td></td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-bike">Bike</span></td><td>10.44</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+    <tr class="group-row"><td colspan="8">Social multi-agent model on Warangal (early, pooled training)</td></tr>
+    <tr>
+      <td><span class="badge b-war">Social GAT (early)</span></td><td>Multi-agent social LSTM</td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-bus">Bus</span></td><td>6.96</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-war">Social GAT (early)</span></td><td></td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-car">Car</span></td><td>7.85</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-war">Social GAT (early)</span></td><td></td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-auto">Auto</span></td><td>8.72</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-war">Social GAT (early)</span></td><td></td>
+      <td>Warangal</td><td>Heterogeneous urban</td>
+      <td><span class="c-bike">Bike</span></td><td>8.83</td><td class="na">—</td><td class="na">—</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 3: SP-GAT PHASES -->
+<div class="section-head">Phase 2 — SP-GAT iterative development · Warangal heterogeneous urban · per-class per-phase</div>
+<table>
+  <thead>
+    <tr><th>Phase</th><th>Key change</th><th>Class</th><th>minADE (m)</th><th>minFDE (m)</th><th>RMSE (m)</th><th>Remark</th></tr>
+  </thead>
+  <tbody>
+    <tr class="group-row"><td colspan="7">P16 — ID collision bug (Bike_1 = Car_1 = id 1) — data corrupted</td></tr>
+    <tr><td>P16 broken</td><td>Pre-fix, composite ID bug</td><td><span class="c-bike">Bike</span></td><td>23.1</td><td class="na">—</td><td class="na">—</td><td>Cross-class track corruption</td></tr>
+    <tr><td>P16 broken</td><td></td><td><span class="c-auto">Auto</span></td><td>23.3</td><td class="na">—</td><td class="na">—</td><td></td></tr>
+    <tr><td>P16 broken</td><td></td><td><span class="c-car">Car</span></td><td>24.2</td><td class="na">—</td><td class="na">—</td><td></td></tr>
+    <tr><td>P16 broken</td><td></td><td><span class="c-bus">Bus</span></td><td>34.9</td><td class="na">—</td><td class="na">—</td><td></td></tr>
+    <tr class="group-row"><td colspan="7">P16 fixed — composite string IDs (Bike_1 ≠ Car_1)</td></tr>
+    <tr><td>P16 ID-fix</td><td>Unique composite IDs</td><td><span class="c-bike">Bike</span></td><td>2.247</td><td class="na">—</td><td class="na">—</td><td>Bug resolved, baseline restored</td></tr>
+    <tr><td>P16 ID-fix</td><td></td><td><span class="c-auto">Auto</span></td><td>2.358</td><td class="na">—</td><td class="na">—</td><td></td></tr>
+    <tr><td>P16 ID-fix</td><td></td><td><span class="c-car">Car</span></td><td>3.706</td><td class="na">—</td><td class="na">—</td><td></td></tr>
+    <tr><td>P16 ID-fix</td><td></td><td><span class="c-bus">Bus</span></td><td>6.765</td><td class="na">—</td><td class="na">—</td><td></td></tr>
+    <tr class="group-row"><td colspan="7">P17 — MAX_V0 = 40 m/s + macro heading + RandomUniform init + per-class training</td></tr>
+    <tr><td>P17</td><td>Physics + gradient fixes</td><td><span class="c-bike">Bike</span></td><td>1.111</td><td>2.670</td><td class="na">—</td><td></td></tr>
+    <tr><td>P17</td><td></td><td><span class="c-auto">Auto</span></td><td>0.877</td><td>2.180</td><td class="na">—</td><td></td></tr>
+    <tr><td>P17</td><td></td><td><span class="c-car">Car</span></td><td>1.330</td><td>3.360</td><td class="na">—</td><td></td></tr>
+    <tr><td>P17</td><td></td><td><span class="c-bus">Bus</span></td><td>1.298</td><td>3.060</td><td class="na">—</td><td></td></tr>
+    <tr class="group-row"><td colspan="7">P18 — heterogeneous neighbor class encoding + stride 5→3</td></tr>
+    <tr><td>P18</td><td>Class one-hot + more data</td><td><span class="c-bike">Bike</span></td><td>1.369</td><td class="na">—</td><td class="na">—</td><td>Regression vs P17 (overfitting)</td></tr>
+    <tr><td>P18</td><td></td><td><span class="c-auto">Auto</span></td><td>1.393</td><td class="na">—</td><td class="na">—</td><td>Regression vs P17</td></tr>
+    <tr><td>P18</td><td></td><td><span class="c-car">Car</span></td><td>1.074</td><td class="na">—</td><td class="na">—</td><td>Improvement</td></tr>
+    <tr><td>P18</td><td></td><td><span class="c-bus">Bus</span></td><td>1.348</td><td class="na">—</td><td class="na">—</td><td>Regression vs P17</td></tr>
+    <tr class="group-row"><td colspan="7">P19 — Y-flip data augmentation (doubles dataset, stride = 5)</td></tr>
+    <tr><td>P19</td><td>Mirror-Y augmentation</td><td><span class="c-bike">Bike</span></td><td>1.113</td><td>2.732</td><td>2.165</td><td></td></tr>
+    <tr><td>P19</td><td></td><td><span class="c-auto">Auto</span></td><td class="best">0.773 <span class="star">★</span></td><td class="best">1.866</td><td class="best">1.167</td><td>Best Auto ever</td></tr>
+    <tr><td>P19</td><td></td><td><span class="c-car">Car</span></td><td>0.911</td><td>2.087</td><td>1.357</td><td></td></tr>
+    <tr><td>P19</td><td></td><td><span class="c-bus">Bus</span></td><td>0.606</td><td>1.352</td><td>0.846</td><td></td></tr>
+    <tr class="group-row"><td colspan="7">P21 — ACT safety loss (Anticipated Collision Time penalty, w = 0.05)</td></tr>
+    <tr><td>P21</td><td>ACT loss on winning mode</td><td><span class="c-bike">Bike</span></td><td>1.045</td><td>2.443</td><td>1.843</td><td></td></tr>
+    <tr><td>P21</td><td></td><td><span class="c-auto">Auto</span></td><td>0.812</td><td>1.982</td><td>1.301</td><td></td></tr>
+    <tr><td>P21</td><td></td><td><span class="c-car">Car</span></td><td class="best">0.805 <span class="star">★</span></td><td class="best">2.097</td><td class="best">1.235</td><td>Best Car ever</td></tr>
+    <tr><td>P21</td><td></td><td><span class="c-bus">Bus</span></td><td>0.522</td><td>1.440</td><td>0.853</td><td></td></tr>
+    <tr class="group-row"><td colspan="7">P22 — full safety suite (ACT + proximity + jerk, class-aware thresholds)</td></tr>
+    <tr><td>P22</td><td>ACT + proximity + jerk loss</td><td><span class="c-bike">Bike</span></td><td class="best">1.029 <span class="star">★</span></td><td class="best">2.414</td><td class="best">1.861</td><td>Best Bike ever</td></tr>
+    <tr><td>P22</td><td></td><td><span class="c-auto">Auto</span></td><td>0.814</td><td>2.007</td><td>1.297</td><td></td></tr>
+    <tr><td>P22</td><td></td><td><span class="c-car">Car</span></td><td>0.906</td><td>2.145</td><td>1.331</td><td></td></tr>
+    <tr><td>P22</td><td></td><td><span class="c-bus">Bus</span></td><td class="best">0.496 <span class="star">★</span></td><td class="best">0.960</td><td class="best">0.686</td><td>Best Bus ever · sub-0.5m</td></tr>
+  </tbody>
+</table>
+
+<!-- SECTION 4: BEST EVER SUMMARY -->
+<div class="section-head">Summary — best-ever per class (Warangal SP-GAT)</div>
+<table>
+  <thead>
+    <tr><th>Class</th><th>Best phase</th><th>minADE (m)</th><th>minFDE (m)</th><th>RMSE (m)</th><th>vs early social baseline</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="c-bike">Bike</span></td><td>P22 · Safety Suite</td>
+      <td class="best">1.029</td><td class="best">2.414</td><td class="best">1.861</td>
+      <td>↓ 88.3% vs 8.83 m</td>
+    </tr>
+    <tr>
+      <td><span class="c-auto">Auto</span></td><td>P19 · Y-Flip</td>
+      <td class="best">0.773</td><td class="best">1.866</td><td class="best">1.167</td>
+      <td>↓ 91.1% vs 8.72 m</td>
+    </tr>
+    <tr>
+      <td><span class="c-car">Car</span></td><td>P21 · ACT Loss</td>
+      <td class="best">0.805</td><td class="best">2.097</td><td class="best">1.235</td>
+      <td>↓ 91.1% vs 7.85 m (social)</td>
+    </tr>
+    <tr>
+      <td><span class="c-bus">Bus</span></td><td>P22 · Safety Suite</td>
+      <td class="best">0.496</td><td class="best">0.960</td><td class="best">0.686</td>
+      <td>↓ 94.5% vs 6.96 m (social)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="note">
+<strong>Dataset notes:</strong> NGSIM (I-101 freeway) is homogeneous (Cars only), lane-disciplined, units originally in feet — converted to meters via ×0.3048. Warangal (drone-extracted, VID_20231013) is heterogeneous urban with 4 vehicle classes and no lane discipline, inherently a harder prediction task. Metrics are therefore not directly comparable across datasets — they serve as independent baselines within each traffic regime.<br><br>
+<strong>Metric notes:</strong> NGSIM Phase 1 models report standard ADE/FDE (single prediction). SP-GAT Phases 19–22 report minADE/minFDE over K=3 modes (Winner-Takes-All). Early Warangal models (P16 ID-fix, P17, P18) also report single-mode ADE. "—" = metric not recorded for that run. ★ = best result ever for that class.
+</p>
+</div>
