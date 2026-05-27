@@ -165,7 +165,6 @@ Same backbone, with five additions targeted at the heterogeneous-class problem:
 3. **Physics-informed initialisation** — `MAX_V0 = 40 m/s`, RandomUniform on the control Dense layer to escape a zero-gradient deadlock under `tanh` saturation.
 4. **Mirror-Y data augmentation** — for a symmetric 2-way road, Y-axis reflection is label-preserving; doubles the effective dataset.
 5. **Multi-objective safety loss** (Phase 22):
-
 $$
 \mathcal{L}_{\text{total}} = \mathcal{L}_{\text{geometry}} + w_1\mathcal{L}_{\text{ACT}} + w_2\mathcal{L}_{\text{prox}} + w_3\mathcal{L}_{\text{jerk}}
 $$
