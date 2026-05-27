@@ -1,0 +1,5 @@
+class,best_phase,minADE_m,minFDE_m,RMSE_m,baseline_ADE_m,improvement_percent
+Bus,P22,0.496,0.960,0.686,6.96,92.9
+Auto,P19,0.773,1.866,1.167,8.72,91.1
+Car,P21,0.805,2.097,1.235,7.85,89.7
+Bike,P22,1.029,2.414,1.861,8.83,88.3

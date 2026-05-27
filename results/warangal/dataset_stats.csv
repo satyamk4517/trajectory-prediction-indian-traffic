@@ -1,0 +1,13 @@
+class,unique_vehicles_in_video1,role_in_thesis
+Bike,371,Most common class on Indian urban roads
+Auto,116,Distinct dynamics (3-wheeler)
+Car,126,Standard class
+Bus,13,Data-scarce (handled with class-aware training and patience tuning)
+
+# Dataset parameters used (Phase 17 onwards)
+# HISTORY_LEN = 30 frames  (3.0 s @ 10 Hz)
+# FUTURE_LEN  = 50 frames  (5.0 s @ 10 Hz)
+# MAX_NEIGHBORS = 5
+# NEIGHBOR_RADIUS = 25 m
+# MAX_SAMPLES per class = 3000 (windowed at stride 5)
+# Source: drone video over urban arterial, Warangal, Telangana, India
