@@ -167,14 +167,10 @@ Same backbone, with five additions targeted at the heterogeneous-class problem:
 5. **Multi-objective safety loss** (Phase 22):
 
 $$
-\mathcal{L}_\text{total}
-\;=\; \mathcal{L}_\text{geometry}
-\;+\; w_1\,\mathcal{L}_\text{ACT}
-\;+\; w_2\,\mathcal{L}_\text{prox}
-\;+\; w_3\,\mathcal{L}_\text{jerk}
+\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{geometry}} + w_1\mathcal{L}_{\text{ACT}} + w_2\mathcal{L}_{\text{prox}} + w_3\mathcal{L}_{\text{jerk}}
 $$
 
-where $\mathcal{L}_\text{ACT}$ is the RAPiD-inspired Anticipated-Collision-Time penalty, $\mathcal{L}_\text{prox}$ penalises predicted paths entering unsafe headway zones, and $\mathcal{L}_\text{jerk}$ regularises for smoothness. Weights $w_i$ are **class-aware** — bikes tolerate higher jerk than buses, and the loss should reflect that.
+where $\mathcal{L}_{\text{ACT}}$ is the RAPiD-inspired Anticipated-Collision-Time penalty, $\mathcal{L}_{\text{prox}}$ penalises predicted paths entering unsafe headway zones, and $\mathcal{L}_{\text{jerk}}$ regularises for smoothness. Weights $w_i$ are **class-aware** — bikes tolerate higher jerk than buses, and the loss should reflect that.
 
 ---
 
