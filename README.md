@@ -171,7 +171,6 @@ $$
 $$
 
 where $\mathcal{L}_{\text{ACT}}$ is the RAPiD-inspired Anticipated-Collision-Time penalty, $\mathcal{L}_{\text{prox}}$ penalises predicted paths entering unsafe headway zones, and $\mathcal{L}_{\text{jerk}}$ regularises for smoothness. Weights $w_i$ are **class-aware** — bikes tolerate higher jerk than buses, and the loss should reflect that.
-
 ---
 
 ## 💡 Engineering lessons from the trenches
