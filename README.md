@@ -166,15 +166,15 @@ Same backbone, with five additions targeted at the heterogeneous-class problem:
 4. **Mirror-Y data augmentation** — for a symmetric 2-way road, Y-axis reflection is label-preserving; doubles the effective dataset.
 5. **Multi-objective safety loss** (Phase 22):
 
-$$
-\mathcal{L}_\text{total}
-\;=\; \mathcal{L}_\text{geometry}
-\;+\; w_1\,\mathcal{L}_\text{ACT}
-\;+\; w_2\,\mathcal{L}_\text{prox}
-\;+\; w_3\,\mathcal{L}_\text{jerk}
-$$
+```
+   L_total = L_geometry + w₁·L_ACT + w₂·L_prox + w₃·L_jerk
+```
 
-where $\mathcal{L}_\text{ACT}$ is the RAPiD-inspired Anticipated-Collision-Time penalty, $\mathcal{L}_\text{prox}$ penalises predicted paths entering unsafe headway zones, and $\mathcal{L}_\text{jerk}$ regularises for smoothness. Weights $w_i$ are **class-aware** — bikes tolerate higher jerk than buses, and the loss should reflect that.
+   where:
+   - **L_ACT** — RAPiD-inspired Anticipated-Collision-Time penalty
+   - **L_prox** — penalty on predicted paths entering unsafe headway zones
+   - **L_jerk** — smoothness regulariser
+   - **w₁, w₂, w₃** — class-aware weights (bikes tolerate higher jerk than buses)
 
 ---
 
