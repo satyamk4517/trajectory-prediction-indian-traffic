@@ -324,7 +324,7 @@ I work at the intersection of traffic engineering and deep learning — physics-
 
 ✉️  [satyamk4517@iitg.ac.in](mailto:satyamk4517@iitg.ac.in)
 ✉️  [satyamshivam511@gmail.com](mailto:satyamshivam511@gmail.com)
-💼  [LinkedIn](https://www.linkedin.com/in/satyam-kumar-a8b25b1b2)
+💼  [LinkedIn](https://www.linkedin.com/in/satyam-kumar-4517-iitg)
 🏛️  [IIT Guwahati — Civil](https://www.iitg.ac.in/civil/)
 
 *If you are hiring, collaborating, or working on motion forecasting for non-Western traffic — I would love to talk.*
