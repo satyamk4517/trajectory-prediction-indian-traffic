@@ -137,6 +137,13 @@ Three things in this repo are not in the 26 models it's compared against:
 
 ### K-PhysGAT — used on NGSIM, and the backbone of SP-GAT
 
+<div align="center">
+<img src="docs/assets/architecture_kphysgat.png" alt="K-PhysGAT architecture: BiLSTM encoder, edge-feature multi-head GAT, LSTM control head, differentiable kinematic-bicycle rollout, and horizon-weighted Huber loss" width="720">
+</div>
+
+<details>
+<summary><b>Text version of the architecture</b> (click to expand)</summary>
+
 ```text
             3s × 5-dim per-step features per agent  (Δx, Δy, vx, vy, lane_id)
                                   │
@@ -170,6 +177,8 @@ Three things in this repo are not in the 26 models it's compared against:
                         │ over 50 timesteps         │   (later steps cost more)
                         └───────────────────────────┘
 ```
+
+</details>
 
 **~1.85 M parameters · 9.4 ms per sample at batch 32 · zero kinematic violations by construction.** Full latency curve: [`results/ngsim_v14/inference_latency.csv`](results/ngsim_v14/inference_latency.csv).
 
