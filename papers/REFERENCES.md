@@ -2,6 +2,8 @@
 
 The PDFs of these papers live in the project's private knowledge base. This file is a self-contained reference list — every line below is a model or idea that directly influenced the architecture in this repository.
 
+This work is being written up as a manuscript in preparation for Transportation Research Part C (TRC-C), covering the current HetSpA model (Warangal) and its diagnostic study, with K-PhysGAT (NGSIM) retained as the earlier-phase protocol-control model.
+
 ---
 
 ## Foundational social-aware models
@@ -23,7 +25,7 @@ Attention-based replacement for max/mean pooling.
 ## Heterogeneous / class-aware modelling
 
 **TrafficPredict** — Ma et al., *TrafficPredict: Trajectory prediction for heterogeneous traffic-agents*, AAAI 2019.
-Inspired the heterogeneous neighbour-class encoding used in SP-GAT (Phase 18+).
+Inspired the heterogeneous neighbour-class encoding, from the SP-GAT phase-era work (Phase 18+) through to the class-conditioned scene state in the current HetSpA architecture.
 
 **SR-LSTM** — Zhang et al., *SR-LSTM: State refinement for LSTM towards pedestrian trajectory prediction*, CVPR 2019.
 State-refinement idea — informs the iterative-refinement decoder.
@@ -49,7 +51,7 @@ Tensor-based multi-agent representation.
 ## Safety-aware losses
 
 **RAPiD** — *Reliable, Aware, Physically-Informed Decision-making for trajectory prediction.*
-Direct inspiration for the Phase 22 safety loss suite (ACT + proximity + jerk). The combination of geometric accuracy with anticipated-collision-time, proximity, and smoothness penalties is the RAPiD-style multi-objective view, adapted here to per-class weights.
+Direct inspiration for the ACT (Anticipated Collision Time) risk instrument in the current HetSpA architecture, descended from the earlier Phase 22 safety loss suite (ACT + proximity + jerk) built during the SP-GAT phase-era work. The combination of geometric accuracy with anticipated-collision-time, proximity, and smoothness penalties is the RAPiD-style multi-objective view.
 
 ---
 
@@ -61,8 +63,8 @@ Direct inspiration for the Phase 22 safety loss suite (ACT + proximity + jerk). 
 | Edge-feature multi-head GAT | (new in this work; closest analogue: SoPhie attention) |
 | Heterogeneous neighbour class embedding | TrafficPredict |
 | Differentiable kinematic bicycle rollout | Trajectron++ |
-| Multi-mode WTA decoder (K=6) | DESIRE, TNT |
-| ACT + proximity + jerk loss | RAPiD |
+| Multi-mode scoring-head decoder (K=6, current HetSpA) | DESIRE, TNT |
+| ACT (Anticipated Collision Time) risk instrument (current HetSpA); + proximity/jerk in the earlier Phase 22 suite | RAPiD |
 | Horizon-weighted Huber | (engineering choice; common in trajectory work) |
 
 ---

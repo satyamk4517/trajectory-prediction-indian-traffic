@@ -1,3 +1,4 @@
+# HISTORICAL: SP-GAT phase-era ablation (P16-P22, 2025 project state). Superseded by the HetSpA harness -- a single trained model evaluated by 3-fold vehicle-ID GroupKFold, not a phase ladder. See results/warangal/best_per_class.csv (current verified HetSpA per-class results) and papers/REFERENCES.md. Retained for project history; do not cite these numbers as current.
 phase,description,bike_minADE_m,auto_minADE_m,car_minADE_m,bus_minADE_m
 baseline_social,Early multi-agent social LSTM baseline,8.83,8.72,7.85,6.96
 P16,Composite string ID fix (was the dominant bug),2.247,2.358,3.706,6.765

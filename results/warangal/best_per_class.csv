@@ -1,5 +1,13 @@
-class,best_phase,minADE_m,minFDE_m,RMSE_m,baseline_ADE_m,improvement_percent
-Bus,P22,0.496,0.960,0.686,6.96,92.9
-Auto,P19,0.773,1.866,1.167,8.72,91.1
-Car,P21,0.805,2.097,1.235,7.85,89.7
-Bike,P22,1.029,2.414,1.861,8.83,88.3
+model,class,minADE_m
+HetSpA,Bike,0.517
+HetSpA,Auto,0.425
+HetSpA,Car,0.383
+HetSpA,Heavy,0.304
+HetSpA,Pooled,0.436
+
+# Source: MTP Report manuscript in preparation for Transportation Research Part C; numbers re-verified 2026-07-18 against the fold-level dumps by script (_verify_s5.py).
+# Metric: best-of-six minADE (m), 3-fold vehicle-ID GroupKFold (no vehicle appears in both train and test of a fold); pooled 3-fold mean 0.436, sd 0.014; 44,088 stored test windows.
+# Pooled baseline context (no verified per-class baseline breakdown exists; not repeated per row to avoid implying one): strongest baseline HEAT-K6 0.510 +/- 0.072 (margin ~15%); CS-LSTM 0.572 +/- 0.021 (margin ~24%). Pooled HetSpA minFDE 1.09 m, best in every class.
+# Per-window pairing over 44,088 windows: HetSpA better on 65.1% vs HEAT-K6 (mean 0.074 m) and 72.8% vs CS-LSTM (mean 0.136 m).
+# Eight re-implemented baselines share one training harness: CV, S-LSTM, CS-LSTM, TraPHic, TrafficPredict, TNT, Transformer, HEAT (+K6 variants).
+# This table replaces the SP-GAT phase-era numbers (P16-P22) previously in this file.
