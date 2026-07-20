@@ -7,7 +7,7 @@
 > **Role in the project.** K-PhysGAT is the NGSIM-side control model — the earlier phase of
 > this project, kept alive specifically as a **protocol-control study**, not as a benchmark
 > entry. The current, paper-verified model for the project's own Indian-traffic dataset is
-> **HetSpA** (Warangal); see [`docs/SP_GAT_warangal.md`](SP_GAT_warangal.md). A manuscript
+> **HetSpA** (Warangal); see [`docs/HetSpA_warangal.md`](HetSpA_warangal.md). A manuscript
 > covering the HetSpA work is in preparation for *Transportation Research Part C*.
 >
 > **Non-comparability caveat (applies to every number on this page).** This NGSIM pipeline
@@ -133,7 +133,7 @@ controls rather than regressing raw (x, y) points.
 The point of this page is **not** a ranking against published NGSIM methods. The point is the
 split-inflation measurement in §3: the same model, same data, two protocols, one 18% honest
 gap. That gap is the evidence this repository can actually stand behind, and it is the reason
-the Warangal arm of the project (see [`docs/SP_GAT_warangal.md`](SP_GAT_warangal.md)) evaluates
+the Warangal arm of the project (see [`docs/HetSpA_warangal.md`](HetSpA_warangal.md)) evaluates
 HetSpA under vehicle-level GroupKFold from the start rather than retrofitting it later.
 
 No sentence on this page ranks K-PhysGAT against a published NGSIM number. Any such comparison
@@ -144,5 +144,5 @@ and a matched horizon before it could be asserted — none of which is verified 
 
 - **Single-frame ego latency is 297.9 ms.** This is dominated by the Python-loop bicycle rollout. Migrating that loop to `tf.scan` is on the future-work list and should bring single-sample latency well under 100 ms.
 - **No HD-map context.** Many modern motion forecasters condition on lane geometry. K-PhysGAT is map-free.
-- **NGSIM is freeway data.** Strong or weak NGSIM numbers do not tell you anything about lane-free urban traffic. That is exactly what the Warangal arm of this project addresses — see [`docs/SP_GAT_warangal.md`](SP_GAT_warangal.md), the current HetSpA documentation.
+- **NGSIM is freeway data.** Strong or weak NGSIM numbers do not tell you anything about lane-free urban traffic. That is exactly what the Warangal arm of this project addresses — see [`docs/HetSpA_warangal.md`](HetSpA_warangal.md), the current HetSpA documentation.
 - **This page's numbers are a protocol-control study, not a leaderboard entry.** Treat §3 as the finding; treat §4–§5 as the supporting detail.

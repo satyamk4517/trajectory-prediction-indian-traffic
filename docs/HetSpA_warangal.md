@@ -1,18 +1,16 @@
 # HetSpA — Heterogeneous Spatial Attention on Warangal Urban Traffic
 
-> **Name note.** This file's name (`SP_GAT_warangal.md`) is kept for link stability, but the
-> model it documents is no longer "SP-GAT." **SP-GAT was the earlier name of this line of
-> work** (the Phase 16 → 22 project on this same Warangal dataset). The current, paper-verified
-> model is **HetSpA** (Heterogeneous Spatial Attention) — a different, more carefully evaluated
-> architecture trained and scored under a vehicle-level 3-fold protocol from the start. A
+> **Model note.** **HetSpA** (Heterogeneous Spatial Attention) is the current, paper-verified
+> model for this Warangal work. An earlier phase of the same line of work, on this same dataset,
+> was called **SP-GAT** (the Phase 16 → 22 experiments); those numbers used an 80/20 temporal
+> split with vehicles shared between train and validation, so they carry the same leakage the
+> project later identified and corrected, and are superseded here rather than restated. HetSpA
+> is trained and scored under a vehicle-level 3-fold GroupKFold protocol from the start. A
 > manuscript covering this work is in preparation for *Transportation Research Part C*.
 >
 > Notebook: [`notebooks/02_warangal_spgat_phases.ipynb`](../notebooks/02_warangal_spgat_phases.ipynb)
-> (filename predates the HetSpA rename; contents cover this line of work).
-> Legacy Phase 16–22 SP-GAT artifacts remain at [`results/warangal/`](../results/warangal/) for
-> historical reference; their numbers are **not restated here** because they used an 80/20
-> temporal split rather than the vehicle-level GroupKFold protocol below, and are superseded by
-> the results in this document.
+> (the notebook name still carries the earlier "spgat" label). Legacy Phase 16–22 artifacts
+> remain under [`results/warangal/`](../results/warangal/) for historical reference.
 
 ---
 

@@ -79,13 +79,13 @@ Window-by-window over all 44,088 test windows, HetSpA is the better model on **6
 
 A multimodal model that keeps six hypotheses pays for it when forced to pick one. On **deployed top-1 ADE** (single committed mode, no oracle), the single-mode baselines win: **HEAT 0.855, S-LSTM 0.858, HetSpA 0.950**. That gap is a structural cost of carrying six modes, not a bug. A **trained commitment head** that scores and selects one mode closes it to **0.874** while keeping all six modes available for a downstream planner. We report both numbers because hiding the top-1 gap would be the dishonest thing to do.
 
-Per-class summary: [`results/warangal/best_per_class.csv`](results/warangal/best_per_class.csv) · Dataset stats: [`results/warangal/dataset_stats.csv`](results/warangal/dataset_stats.csv) · Methodology: [`docs/SP_GAT_warangal.md`](docs/SP_GAT_warangal.md).
+Per-class summary: [`results/warangal/best_per_class.csv`](results/warangal/best_per_class.csv) · Dataset stats: [`results/warangal/dataset_stats.csv`](results/warangal/dataset_stats.csv) · Methodology: [`docs/HetSpA_warangal.md`](docs/HetSpA_warangal.md).
 
 ---
 
 ### NGSIM US-101 — a protocol-honesty study, not a SOTA contest
 
-NGSIM here is used for one purpose: to measure how much the **evaluation split** flatters a model on a homogeneous benchmark. The NGSIM-side model is **K-PhysGAT** (the earlier physics-decoded GAT that is HetSpA's ancestor). The same model, the same data, only the split changes:
+NGSIM here is used for one purpose: to measure how much the **evaluation split** flatters a model on a homogeneous benchmark. The NGSIM-side model is **K-PhysGAT**, the earlier physics-decoded model from the NGSIM phase of the project, whose kinematic-bicycle-decoder idea carried into HetSpA. The same model, the same data, only the split changes:
 
 <div align="center">
 
@@ -183,7 +183,7 @@ This is an unglamorous result, and it is the honest one. To check it does not de
 
 **~1.87 M parameters.** Trained with a label-preserving **Y-flip augmentation** on the symmetric road. The flip is disclosed and was **ablated**: a no-flip run scores **0.4205 ± 0.0189 m** against the augmented **0.436 ± 0.014 m** — within noise, so the augmentation is **not load-bearing**. The reported model keeps it because the model was specified before the ablation, not because the ablation proved it necessary.
 
-Full architecture and training detail: [`docs/SP_GAT_warangal.md`](docs/SP_GAT_warangal.md).
+Full architecture and training detail: [`docs/HetSpA_warangal.md`](docs/HetSpA_warangal.md).
 
 ---
 
@@ -234,7 +234,7 @@ trajectory-prediction-indian-traffic/
 │       └── dataset_stats.csv                  ← vehicle and window counts
 │
 ├── docs/
-│   ├── SP_GAT_warangal.md                     ← HetSpA methodology + diagnostic
+│   ├── HetSpA_warangal.md                     ← HetSpA methodology + diagnostic
 │   ├── K_PhysGAT_NGSIM.md                     ← NGSIM protocol-study methodology
 │   └── assets/                                ← README figures (ARCH / T1 / REAL2 / V1 / E1)
 │
